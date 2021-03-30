@@ -1,0 +1,58 @@
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Autofarm Stuff")
+local b = w:CreateFolder("AutoFarm")
+b:Toggle("AutoSpeed",function(bool)
+    aa = bool
+    if aa then
+        spawn(function()
+            while aa and wait() do
+                game:GetService("ReplicatedStorage").Remotes.AddSpeed:FireServer()
+            end
+        end)
+    end
+end)
+
+b:Toggle("CollectOrbs/Hoops",function(bool)
+    ab = bool
+    if ab then
+        spawn(function()
+            while ab and wait() do
+                local char = game.Players.LocalPlayer.Character
+var = unpack(game.Workspace.GameAssets.GlobalAssets.OrbSpawns:GetChildren())
+var.CFrame = char.HumanoidRootPart.CFrame
+end
+end)
+end
+end)
+
+b:Toggle("AutoRebirth",function(bool)
+    ac = bool
+    if ac then  
+        spawn(function()
+            while ac and wait() do
+                game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer()
+            end
+        end)
+    end
+end)
+
+b:Button("Delete PopUps",function()
+game:GetService("Players").LocalPlayer.PlayerGui.V2.VisualClicks:Destroy()
+    end)
+
+b:Button("Best Pet",function()
+local args = {
+    [1] = "Death.exe"
+}
+
+game:GetService("ReplicatedStorage").Remotes.CanBuyEgg:InvokeServer(unpack(args))
+end)
+
+b:Button("AntiAfk",function()
+    local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+end)
